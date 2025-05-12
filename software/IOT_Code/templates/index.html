@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='template.css') }}" />
+    <title>Strongberry's</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+</head>
+
+<body>
+    <header id="header">
+        <input type="checkbox" id="menu" />
+        <label for="menu">
+            <img src="./static/library/logotype_resourses/accesibility/menu.svg" class="menu-icon" alt="" />
+        </label>
+        <ul class="menu">
+            <li class="item">
+                <a class="link" href="https://escalia-corporation.github.io/Website/about.html">
+                    <button class="header-link">Acerca de</button></a>
+            </li>
+        </ul>
+    </header>
+
+    <main>
+        <section class="title">
+            <h1>Tilapia Metric Dashboard</h1>
+        </section>
+        <section class="content">
+            <div class="graphs-container">
+                <canvas id="mq135-chart"></canvas>
+                <canvas id="temp-chart"></canvas>
+
+
+                <!--<canvas id="ldr-chart"></canvas>-->
+            </div>
+            <div class="graphs-container">
+                <canvas id="tds-chart"></canvas>
+                <canvas id="ph-chart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const socket = io();
+
+        // Inicializar los gráficos
+        let mq135Chart = new Chart(document.getElementById('mq135-chart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Calidad del Aire evaporados',
+                    data: [],
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        min: 0, // valor mínimo del eje Y
+                        max: 400, // valor máximo del eje Y
+                    }
+                }
+            }
+        });
+
+        let tempChart = new Chart(document.getElementById('temp-chart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Temperatura',
+                    data: [],
+                    borderColor: 'rgb(255, 99, 132)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        min: 5, // valor mínimo del eje Y
+                        max: 40, // valor máximo del eje Y
+                    }
+                }
+            }
+        });
+
+        let tdsChart = new Chart(document.getElementById('tds-chart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Sales Disueltas en agua',
+                    data: [],
+                    borderColor: 'rgb(54, 162, 235)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        min: 0, // valor mínimo del eje Y
+                        max: 600, // valor máximo del eje Y
+                    }
+                }
+            }
+        });
+
+        let phChart = new Chart(document.getElementById('ph-chart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'PH',
+                    data: [],
+                    borderColor: 'rgb(153, 102, 255)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        min: 0, // valor mínimo del eje Y
+                        max: 14, // valor máximo del eje Y
+                    }
+                }
+            }
+        });
+
+        let ldrChart = new Chart(document.getElementById('ldr-chart'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'LDR',
+                    data: [],
+                    borderColor: 'rgb(255, 159, 64)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        min: 0, // valor mínimo del eje Y
+                        max: 1024, // valor máximo del eje Y
+                    }
+                }
+            }
+        });
+
+
+        // Escuchar los datos de los sensores
+        socket.on("sensor_data", function (data) {
+            // Actualizar los datos de los gráficos
+            updateChart(mq135Chart, data.MQ135);
+            updateChart(tempChart, data.Temp);
+            updateChart(tdsChart, data.TDS);
+            updateChart(phChart, data.PH);
+            updateChart(ldrChart, data.LDR);
+        });
+
+        // Función para actualizar los gráficos con nuevos datos
+        function updateChart(chart, data) {
+            chart.data.labels.push(new Date().toLocaleTimeString());
+            chart.data.datasets[0].data.push(data[data.length - 1]);
+
+
+            if (chart.data.labels.length > 40) {
+                chart.data.labels.shift();
+                chart.data.datasets[0].data.shift();
+            }
+
+            chart.update();
+        }
+    </script>
+</body>
+
+</html>

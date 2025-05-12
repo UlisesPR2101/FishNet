@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráficos en Tiempo Real</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+</head>
+<body>
+    <h1>Gráfico en Tiempo Real</h1>
+    <canvas id="myChart" width="200" height="100"></canvas>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const data = {
+            labels: [],
+            datasets: [{
+                label: 'Datos Aleatorios',
+                data: [],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                fill: false
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        const myChart = new Chart(ctx, config);
+
+        const socket = io();
+
+        socket.on('new_data', function(msg) {
+            // Agrega el nuevo dato al gráfico
+            if (data.labels.length >= 20) {
+                data.labels.shift(); // Elimina el primer label si hay más de 10
+                data.datasets[0].data.shift(); // Elimina el primer dato si hay más de 10
+            }
+            data.labels.push(new Date().toLocaleTimeString());
+            data.datasets[0].data.push(msg.value);
+            myChart.update();
+        });
+    </script>
+</body>
+</html>

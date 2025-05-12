@@ -1,0 +1,75 @@
+body {
+  background-color: var(--background);
+  color: var(--color);
+  border: #828a121f;
+}
+
+.header-link {
+  color: var(--color);
+}
+
+.title {
+  margin-top: 70px;
+  text-align: center;
+  align-content: center;
+  height: 10px;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: lighter;
+}
+
+.content {
+  padding: 60px 0px 0;
+  text-align: center;
+  align-content: center;
+}
+
+.container {
+  margin: 15px 2px;
+  padding: 1.5%;
+  background: linear-gradient(120deg, #41006631, #0046662f);
+  border: 0.5px solid #303030;
+  border-radius: 5px;
+  color: var(--color);
+}
+
+.graphs-container {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  width: 110%;
+  height: 450px;
+}
+
+.graphs-container > .canva-graph {
+  width: 70%;
+  height: 450px;
+}
+
+canvas {
+  width: 500px;
+}
+
+@media screen and (min-width: 1400px) {
+  .content {
+    margin: 0px 0%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .content {
+    margin: 10px 5px;
+  }
+
+  .graphs-container {
+    display: inline;
+    justify-content: center;
+    width: 100%;
+  }
+
+  canvas {
+    width: auto;
+  }
+}
