@@ -2,10 +2,14 @@
 
 ## Descripción 📦
 
-El proyecto consiste en el diseño, desarrollo e implementación de un biodigestor equipado con sensores para monitorear y optimizar el proceso de producción de biogás a partir de residuos orgánicos (de origen animal). El biodigestor aprovechará la descomposición anaeróbica de la materia orgánica para generar biogás, una fuente de energía renovable y limpia, mientras que los sensores permitirán controlar parámetros clave como la temperatura, nivel de humedad y concentración de gases de Co2 y Metano; garantizando una eficiencia óptima y una producción constante de biogás.
+El proyecto "FishNet" consiste en el diseño, desarrollo e implementación de un prototipo para el monitoreo y control en tiempo real de sistemas de acuicultura destinados a la producción de tilapia. Este innovador sistema integra tecnología avanzada y el Internet de las Cosas (IoT) para abordar los serios desafíos que enfrenta la industria, especialmente en regiones como Tezontepec de Aldama, Hidalgo, donde el monitoreo ineficaz de parámetros críticos del agua pone en riesgo los cultivos y afecta la rentabilidad.
+
+"FishNet" utiliza sensores de alta precisión para medir una variedad de parámetros esenciales, incluyendo temperatura, pH, sólidos disueltos totales, luminescencia y gases evaporados nocivos. Estos datos son transmitidos eficientemente a través del protocolo GSM, permitiendo su procesamiento y visualización en tiempo real mediante la plataforma Node-RED. Esto capacita a los productores para realizar ajustes oportunos y optimizar el entorno de cultivo, mejorando así la calidad del agua y la salud de los peces.
+
+El prototipo combina microcontroladores, sensores y algoritmos diseñados para capturar datos con alta precisión. Utiliza herramientas de desarrollo como C++ para la programación y Python para la visualización, lo que ofrece una solución costo-efectiva especialmente dirigida a pequeños y medianos productores
 
 ## Visuales 📷
-
+Cambiar visuales
 ![Zabbix Dashboard](https://github.com/Bionovaa/Gestoreit/blob/main/Imagenes/zabbix-dashboard.jpg)
 ![Zabbix Dashboard](https://github.com/Bionovaa/Gestoreit/blob/main/diagramas/sensors-diagram.png)
 ![Zabbix Dashboard](https://github.com/Bionovaa/Gestoreit/blob/main/diagramas/conection-diagram.png)
@@ -20,7 +24,7 @@ Por ahora no hay alguna forma de tener nuestro proyecto ya que se encuentra aloj
 Lista de software y herramientas, incluyendo versiones, que necesitas para instalar y ejecutar este proyecto:
 
 - Sistema Operativo: Linux nativo o de forma virtualizada
-- Base de datos: Mariadb o MySQL
+- Base de datos: InfluxDB
 - Zabbix: Frontend, server y agente 2 (version 6)
 - PHP (version 8)
 - Arduino IDE
