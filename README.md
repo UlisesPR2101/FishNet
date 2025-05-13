@@ -10,9 +10,9 @@ El prototipo combina microcontroladores, sensores y algoritmos diseñados para c
 
 ## Visuales 📷
 Cambiar visuales
-![Zabbix Dashboard](https://github.com/Bionovaa/Gestoreit/blob/main/Imagenes/zabbix-dashboard.jpg)
+![Zabbix Dashboard](https://github.com/UlisesPR2101/FishNet/blob/main/Imagenes/zabbix-dashboard.jpg)
 ![Zabbix Dashboard](https://github.com/UlisesPR2101/FishNet/blob/main/diagramas/conection-Diagram-liygo.png)
-![Zabbix Dashboard](https://github.com/Bionovaa/Gestoreit/blob/main/diagramas/conection-diagram.png)
+![Zabbix Dashboard](https://github.com/UlisesPR2101/FishNet/blob/main/diagramas/conection-diagram.png)
 
 ## Empezando 🚀
 
@@ -25,8 +25,8 @@ Lista de software y herramientas, incluyendo versiones, que necesitas para insta
 
 - Sistema Operativo: Linux nativo o de forma virtualizada
 - Base de datos: InfluxDB
-- Zabbix: Frontend, server y agente 2 (version 6)
-- PHP (version 8)
+- //////Dasboar usado: Frontend, server y agente 2 (version 6)
+- //////PHP (version 8)
 - Arduino IDE
 - Librerias de arduino usadas:
   - SoftwareSerial
@@ -93,7 +93,7 @@ sudo apt update && sudo apt upgrade
 sudo apt install zabbix-agent2
 ```
 
-## Configuracion ⚙️
+## Configuracion /////Cambiar configuracion⚙️
 
 Servidor Zabbix:
 Agente Zabbix:
@@ -131,7 +131,7 @@ Crear Hosts: Cree hosts en Zabbix para representar los dispositivos IoT. Asigne 
 ```
 
 ## Inalambrica 🛜
-El proyecto utiliza la tecnología LoRaWAN (Long Range Wide Area Network) para la comunicación inalámbrica entre los sensores del biodigestor y el gateway. LoRaWAN es una tecnología de red de área amplia de baja potencia (LPWAN) diseñada para aplicaciones de Internet de las Cosas (IoT) que requieren conectividad de largo alcance y bajo consumo de energía.
+El proyecto utiliza la tecnología GSM (Global System for Mobile Communications) para la comunicación inalámbrica entre los sensores del acuífero FishNet y el servidor Hiven MQ. GSM es un estándar de comunicación móvil que permite la transmisión de datos a través de redes celulares, proporcionando conectividad de largo alcance y un consumo relativamente bajo de energía, ideal para aplicaciones de Internet de las Cosas (IoT). Esta tecnología permite la transmisión eficiente y en tiempo real de los datos críticos del acuífero, asegurando un monitoreo continuo y optimización del proceso de producción de tilapia.
 
 #### Dispositivos de Red Inalámbrica:
 - Sensores: Los sensores instalados en el biodigestor estarán equipados con módulos LoRaWAN para transmitir datos al gateway.
