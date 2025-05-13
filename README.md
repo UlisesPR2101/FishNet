@@ -29,28 +29,30 @@ Lista de software y herramientas, incluyendo versiones, que necesitas para insta
 - PHP (version 8)
 - Arduino IDE
 - Librerias de arduino usadas:
-  - heltec
+  - SoftwareSerial
   - PubSubClient
   - OneWire
   - DallasTemperature
+  - TinyGsmClient
 
 ### Hardware 
 
-- Placa HELTEC LoRa v2
+- Placa lilygo t-sim7000g
 - Raspberry Placa o de Forma virtualizada
-- Sensor de gas Metano MQ4
-- Sensor de Dioxido de carbono MQ9
+- Sensor Ambiental MQ135
+- Sensor de CQRobot TDS
+- Sensor PH-4502C Sensor de PH Liquido con electrodo E201-BNC
 - Sensor de Temperatura 18B20
-- Sensor de Humedad HW-103
+- Sensor de Luz LDR
 
 
 ## Instalación 🔧
 
-### Instalación en Heltec LoRa 32:
+### Instalación en lilygo t-sim7000g:
 
 Dependencias:
 - Sistema operativo Arduino IDE
-- Placa Heltec LoRa 32
+- Placa lilygo t-sim7000g
 - Cable USB
 
 Pasos:
@@ -58,15 +60,15 @@ Pasos:
     
     https://support.arduino.cc/hc/en-us/articles/360019833020-Download-and-install-Arduino-IDE.
   
-2.- Conecte la placa Heltec LoRa 32: Conecte la placa Heltec LoRa 32 a su computadora usando un cable USB.
+2.- Conecte la placa lilygo t-sim7000g: Conecte la placa lilygo t-sim7000g a su computadora usando un cable USB.
   
-3.- Seleccione la placa y el puerto: En el Arduino IDE, seleccione la placa "Heltec LoRa32" y el puerto correspondiente a la conexión USB.
+3.- Seleccione la placa y el puerto: En el Arduino IDE, seleccione la placa "ESP32 Dev Module" y el puerto correspondiente a la conexión USB.
   
-4.- Descargue el código del proyecto: Descargue el código fuente del proyecto para Heltec LoRa 32.
+4.- Descargue el código del proyecto: Descargue el código fuente del proyecto para lilygo t-sim7000g.
   
 5.- Abra el código en Arduino IDE: Abra el código descargado en el Arduino IDE.
   
-6.- Compile y cargue el código: Compile el código y cárguelo en la placa Heltec LoRa 32 presionando el botón "Subir".
+6.- Compile y cargue el código: Compile el código y cárguelo en la placa lilygo t-sim7000g presionando el botón "Subir".
 
 ### Instalación en Raspberry Pi:
 
