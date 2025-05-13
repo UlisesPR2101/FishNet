@@ -11,7 +11,7 @@ El prototipo combina microcontroladores, sensores y algoritmos diseñados para c
 ## Visuales 📷
 Cambiar visuales
 ![Zabbix Dashboard](https://github.com/Bionovaa/Gestoreit/blob/main/Imagenes/zabbix-dashboard.jpg)
-![Zabbix Dashboard](https://github.com/Bionovaa/Gestoreit/blob/main/diagramas/sensors-diagram.png)
+![Zabbix Dashboard](https://github.com/UlisesPR2101/FishNet/blob/main/diagramas/conection-Diagram-liygo.png)
 ![Zabbix Dashboard](https://github.com/Bionovaa/Gestoreit/blob/main/diagramas/conection-diagram.png)
 
 ## Empezando 🚀
