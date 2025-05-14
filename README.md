@@ -12,7 +12,7 @@ El prototipo combina microcontroladores, sensores y algoritmos diseñados para c
 Cambiar visuales
 ![Zabbix Dashboard](https://github.com/UlisesPR2101/FishNet/blob/main/Imagenes/zabbix-dashboard.jpg)
 ![Zabbix Dashboard](https://github.com/UlisesPR2101/FishNet/blob/main/diagramas/conection-Diagram-liygo.png)
-![Zabbix Dashboard](https://github.com/UlisesPR2101/FishNet/blob/main/diagramas/conection-diagram.png)
+![Zabbix Dashboard](https://github.com/UlisesPR2101/FishNet/blob/main/diagramas/Web-Diagram-lilygo.png)
 
 ## Empezando 🚀
 
