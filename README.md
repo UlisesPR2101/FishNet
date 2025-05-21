@@ -16,19 +16,24 @@ Cambiar visuales
 
 ## Empezando 🚀
 
-Por ahora no hay alguna forma de tener nuestro proyecto ya que se encuentra alojado en una maquina virtual, proximamente en un contenedor para el acceso para todos
+Disponible en este repositorio y próximamente desplegado en un sitio web.
 
 ## Requisitos 📋
 
 ### Software
 Lista de software y herramientas, incluyendo versiones, que necesitas para instalar y ejecutar este proyecto:
 
-- Sistema Operativo: Linux nativo o de forma virtualizada
-- Base de datos: InfluxDB
-- //////Dasboar usado: Frontend, server y agente 2 (version 6)
-- //////PHP (version 8)
-- Arduino IDE
-- Librerias de arduino usadas:
+- Sistema Operativo: Windows, Linux o Mac
+- Base de datos: SQLite
+- Backend y visualización: Flask con Socket.io en Python 3.11 o superior
+- Python 3.11 o superior
+- Librerías de Python usadas:
+  - Paho.mqtt
+  - Flask
+  - Flask-SocketIO
+  - Jinja
+- Node-Red
+- Librerías de Arduino usadas:
   - SoftwareSerial
   - PubSubClient
   - OneWire
@@ -38,106 +43,96 @@ Lista de software y herramientas, incluyendo versiones, que necesitas para insta
 ### Hardware 
 
 - Placa lilygo t-sim7000g
-- Raspberry Placa o de Forma virtualizada
+- Raspberry Pi (opcional) o cualquier equipo capaz de ejecutar Python
 - Sensor Ambiental MQ135
 - Sensor de CQRobot TDS
-- Sensor PH-4502C Sensor de PH Liquido con electrodo E201-BNC
+- Sensor PH-4502C Sensor de PH Líquido con electrodo E201-BNC
 - Sensor de Temperatura 18B20
 - Sensor de Luz LDR
 
-
 ## Instalación 🔧
 
-### Instalación en lilygo t-sim7000g:
+### Instalación en lilygo t-sim7000g: 
+
+Descargue el repositorio
 
 Dependencias:
-- Sistema operativo Arduino IDE
 - Placa lilygo t-sim7000g
-- Cable USB
+- Cable USB tipo A a Tipo C
+- Python 3.11 instalado en el entorno
 
 Pasos:
-1.- Descargue e instale el Arduino IDE: Descargue e instale la última versión del Arduino IDE desde el sitio web oficial:       
-    
-    https://support.arduino.cc/hc/en-us/articles/360019833020-Download-and-install-Arduino-IDE.
-  
-2.- Conecte la placa lilygo t-sim7000g: Conecte la placa lilygo t-sim7000g a su computadora usando un cable USB.
-  
-3.- Seleccione la placa y el puerto: En el Arduino IDE, seleccione la placa "ESP32 Dev Module" y el puerto correspondiente a la conexión USB.
-  
-4.- Descargue el código del proyecto: Descargue el código fuente del proyecto para lilygo t-sim7000g.
-  
-5.- Abra el código en Arduino IDE: Abra el código descargado en el Arduino IDE.
-  
-6.- Compile y cargue el código: Compile el código y cárguelo en la placa lilygo t-sim7000g presionando el botón "Subir".
+1. Descargue e instale el Arduino IDE: Descargue e instale la última versión del Arduino IDE desde el sitio web oficial:  
+   https://support.arduino.cc/hc/en-us/articles/360019833020-Download-and-install-Arduino-IDE.
+2. Conecte la placa lilygo t-sim7000g: Conecte la placa lilygo t-sim7000g a su computadora usando un cable USB.
+3. Seleccione la placa y el puerto: En el Arduino IDE, seleccione la placa "ESP32 Dev Module" y el puerto correspondiente a la conexión USB.
+4. Descargue el código del proyecto: Descargue el código fuente del proyecto para lilygo t-sim7000g.
+5. Abra el código en Arduino IDE: Abra el código descargado en el Arduino IDE.
+6. Compile y cargue el código: Compile el código y cárguelo en la placa lilygo t-sim7000g presionando el botón "Subir".
 
-### Instalación en Raspberry Pi:
+### Instalación del entorno Python para el backend y visualización
 
-Dependencias:
-- Sistema operativo Raspbian
-- Raspberry Pi
-- Cable Ethernet o WiFi
+El backend y la visualización pueden desplegarse en cualquier equipo con Python 3.11 o superior instalado, sin depender de un sistema operativo específico como Raspbian.
 
 Pasos:
 
-1.- Descargue e instale Raspbian: Descargue e instale la última versión de Raspbian en su Raspberry Pi. Puede encontrar instrucciones detalladas en el sitio web oficial de Raspberry Pi:
-  
-    https://www.raspberrypi.com/software/.
+1. Asegúrese de tener Python 3.11 o superior instalado en su equipo. Puede descargarlo desde:  
+   https://www.python.org/downloads/
+2. Clone este repositorio y acceda a la carpeta del proyecto.
+3. Instale las dependencias necesarias ejecutando:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   Si no existe un archivo `requirements.txt`, instale manualmente las dependencias listadas en la sección de requisitos de software.
+4. Ejecute el backend del proyecto con:
+   ```bash
+   python main.py
+   ```
+   (Reemplace `main.py` por el archivo principal de la aplicación si es diferente.)
 
-2.- Actualice el sistema: Abra una terminal en su Raspberry Pi y ejecute el siguiente comando para actualizar el sistema:
-```bash
-sudo apt update && sudo apt upgrade
-```
+5. Siga las instrucciones específicas del proyecto para configurar la base de datos y los servicios adicionales como Node-RED si es necesario.
 
-3.- Instale las dependencias necesarias: Instale las dependencias necesarias para ejecutar el software del proyecto usando el siguiente comando:
-```bash
-sudo apt install zabbix-agent2
-```
+## Configuración ⚙️
 
-## Configuracion /////Cambiar configuracion⚙️
+### Configuración de Flask con Socket.IO
 
-Servidor Zabbix:
-Agente Zabbix:
+El monitoreo y visualización de datos ahora se realiza mediante un backend en Flask que utiliza Socket.IO para la comunicación en tiempo real con la interfaz web.
 
-1.- Configure el agente Zabbix para comunicarse con el servidor Zabbix. Esto generalmente se realiza editando el archivo de configuración del agente (zabbix_agentd.conf).
+Pasos básicos de configuración:
 
-Servidor Zabbix:
+1. Asegúrese de tener instaladas las dependencias necesarias:
+   ```bash
+   pip install flask flask-socketio
+   ```
+2. Configure el archivo principal de la aplicación Flask para recibir y emitir datos de los sensores. Ejemplo básico:
+   ```python
+   from flask import Flask, render_template
+   from flask_socketio import SocketIO, emit
 
-1.- Habilitar plugin MQTT: En el servidor Zabbix, habilite el plugin MQTT en la configuración del servidor (zabbix_server.conf).
+   app = Flask(__name__)
+   socketio = SocketIO(app)
 
-2,- Crear Elementos (Items): Cree elementos en Zabbix para representar los datos que desea monitorear de los dispositivos IoT. Configure la clave del elemento para utilizar la función mqttavailable o mqtt.get.
+   @app.route('/')
+   def index():
+       return render_template('index.html')
 
-- mqttavailable: verifica la disponibilidad de un tópico MQTT específico.
-- mqtt.get: recupera el valor de un tópico MQTT específico.
+   @socketio.on('sensor_data')
+   def handle_sensor_data(data):
+       emit('update_dashboard', data, broadcast=True)
 
-```zabbix agent configuration file
-# Define el nombre del elemento
-Hostname: MqttSensor1
+   if __name__ == '__main__':
+       socketio.run(app, host='0.0.0.0', port=5000)
+   ```
+3. Configure la interfaz web para conectarse al backend usando Socket.IO y mostrar los datos en tiempo real.
+4. Personalice la lógica según los sensores y parámetros que desee monitorear.
 
-# Define la clave del elemento para usar la función mqtt.get
-Type: Zabbix Agent ("mqtt.get")
-
-# Define el ID del host asociado al dispositivo IoT
-Key: mqtt.sensor1/temperature
-
-# Opcional: define el nombre del ítem para mostrarse en la interfaz
-Name: Sensor 1 Temperature (MQTT)
-
-# Opcional: define las unidades de medida del dato
-Units: °C
-
-# Opcional: define el intervalo de recolección de datos
-Delay: 30s
-Crear Hosts: Cree hosts en Zabbix para representar los dispositivos IoT. Asigne los elementos creados anteriormente a cada host correspondiente.
-```
-
-## Inalambrica 🛜
+## Inalámbrica 🛜
 El proyecto utiliza la tecnología GSM (Global System for Mobile Communications) para la comunicación inalámbrica entre los sensores del acuífero FishNet y el servidor Hiven MQ. GSM es un estándar de comunicación móvil que permite la transmisión de datos a través de redes celulares, proporcionando conectividad de largo alcance y un consumo relativamente bajo de energía, ideal para aplicaciones de Internet de las Cosas (IoT). Esta tecnología permite la transmisión eficiente y en tiempo real de los datos críticos del acuífero, asegurando un monitoreo continuo y optimización del proceso de producción de tilapia.
 
 #### Dispositivos de Red Inalámbrica:
 - Sensores: Los sensores instalados en el biodigestor estarán equipados con módulos LoRaWAN para transmitir datos al gateway.
 - Gateway: Un gateway LoRaWAN actuará como punto de acceso para los sensores y será responsable de la comunicación entre los sensores y el servidor MQTT.
 - Servidor MQTT: Un servidor MQTT recibirá los datos de los sensores a través del gateway y los almacenará para su análisis y visualización.
-Configuración de la Red:
 
 #### Configuración de la Red:
 - Sensores: Cada sensor LoRaWAN tendrá una dirección única que lo identificará en la red. Los sensores se configurarán para transmitir datos a intervalos regulares, por ejemplo, cada minuto.
@@ -182,11 +177,11 @@ Las contribuciones son lo que hacen a la comunidad de código abierto un lugar i
 
 Posibles implementaciones al proyecto
 
-- Implementar automatizacion al proyecto
-- Agregar mas sensores para el monitoreo
-- Optimizacion de codigo de la placa
-- Implementacion de big data para el analisis de datos
-- implementacion de computo en la nube
+- Implementar automatización al proyecto
+- Agregar más sensores para el monitoreo
+- Optimización de código de la placa
+- Implementación de big data para el análisis de datos
+- Implementación de cómputo en la nube
 
 ## Autores ✒️
 
@@ -203,7 +198,7 @@ Estamos agradecidos por las contribuciones de la comunidad a este proyecto. Si e
 
 - Comparte este proyecto con otros
 - Muestra tu agradecimiento diciendo gracias en un nuevo problema.
-- sigue al tarabjo de nuestros autores
+- Sigue el trabajo de nuestros autores
 
 ## Licencia y Términos de Uso 📄
 Licencia:
@@ -224,4 +219,4 @@ Al utilizar o contribuir al proyecto, los usuarios y colaboradores aceptan los s
 - Los usuarios y colaboradores deben utilizar el software de manera responsable y bajo su propio riesgo.
 
 ---
-Hecha con ❤️ por **ESCALIA Studios**
+Hecha con ❤️ por **Alejandro Barrientos Escalante**, **ESCALIA Studios** y *FishNet Team**
